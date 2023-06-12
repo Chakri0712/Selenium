@@ -8,6 +8,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,23 +26,31 @@ public class LoginPageAssignment {
 		
 		driver.manage().window().maximize();
 		
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		
 		driver.findElement(By.id("username")).sendKeys("rahulshettyacademy");
 		
-		driver.findElement(By.id("password")).sendKeys("learning");
+		driver.findElement(By.id("password")).sendKeys("learning");		
 		
 		driver.findElement(By.xpath("//span[text()=' User']")).click();
+		
+		//Here explicit and implicit waits are not working for firefox and edge browsers so used thread.sleep
+		
+		Thread.sleep(3000);
 				
 		WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(5));
 		
-		w.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".modal-body p")));
+		//w.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='okayBtn']")));
 		
-		driver.findElement(By.id("okayBtn")).click();
+		driver.findElement(By.xpath("//button[@id='okayBtn']")).click();
 		
 		WebElement dropdown = driver.findElement(By.cssSelector("select[data-style='btn-info']"));
 		
 		Select s = new Select(dropdown);
+		
+		//Here explicit and implicit waits are not working for firefox and edge browsers so used thread.sleep
+		
+		Thread.sleep(3000);
 		
 		s.selectByValue("consult");
 		
